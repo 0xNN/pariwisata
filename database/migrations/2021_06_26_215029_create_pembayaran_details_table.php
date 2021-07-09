@@ -17,10 +17,11 @@ class CreatePembayaranDetailsTable extends Migration
             $table->id();
             $table->smallInteger('pembayaran_id');
             $table->integer('pembayaran_ke');
-            $table->bigInteger('dibayar');
-            $table->smallInteger('bank_id');
-            $table->string('no_rekening');
-            $table->text('bukti_bayar');
+            $table->bigInteger('dibayar')->nullable();
+            $table->smallInteger('bank_id')->nullable();
+            $table->string('no_rekening')->nullable();
+            $table->text('bukti_bayar')->nullable();
+            $table->smallInteger('status_dibayar')->default(0); // 0 = belum, 1 = sudah
             $table->timestamps();
         });
     }

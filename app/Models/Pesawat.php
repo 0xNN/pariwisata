@@ -11,4 +11,14 @@ class Pesawat extends Model
 
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function paket()
+    {
+        return $this->hasOne(Paket::class);
+    }
+
+    public function pesawat_detail()
+    {
+        return $this->hasMany(PesawatDetail::class);
+    }
 }

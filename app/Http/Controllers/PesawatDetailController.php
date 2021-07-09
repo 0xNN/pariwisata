@@ -35,7 +35,22 @@ class PesawatDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasfile('foto'))
+        {
+            foreach($request->file('foto') as $file)
+            {
+                // dd($file->hasName());
+                $name = round(microtime(true)*1000).'-'.$file->getClientOriginalName();
+                // dd(str_replace('\"', '', $name));
+                $file->move(public_path('images'), $name);
+                $f = new PesawatDetail();
+                $f->pesawat_id = $request->pesawat_id;
+                $f->foto = $name;
+                $f->save();
+            }
+
+            return response()->json($f);
+        }
     }
 
     /**
@@ -44,9 +59,15 @@ class PesawatDetailController extends Controller
      * @param  \App\Models\PesawatDetail  $pesawatDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(PesawatDetail $pesawatDetail)
+    public function show($id)
     {
-        //
+        $detail = PesawatDetail::where('pesawat_id', $id)->get();
+        $foto = array();
+        foreach($detail as $data) 
+        {
+            array_push($foto, $data->foto);
+        }
+        return response()->json($foto);
     }
 
     /**

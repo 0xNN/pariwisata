@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank;
 use Illuminate\Http\Request;
+use DataTables;
 
 class BankController extends Controller
 {
@@ -12,9 +13,25 @@ class BankController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            $data = Bank::all();
+            return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        $button = '<div class="btn-group btn-group-sm" role="group">';
+                        $button .= '<button href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-info btn-sm edit-post"><i class="fas fa-edit"></i></button>';
+                        $button .= '<button type="button" name="delete" id="'.$row->id.'" class="delete btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>';
+                        $button .= '</div>';
+
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+
+        return view('bank.index');
     }
 
     /**
@@ -35,7 +52,13 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = $request->id;
+
+        $post = Bank::updateOrCreate(['id' => $id],[
+            'nama_bank' => $request->nama_bank,
+        ]);
+
+        return response()->json($post);
     }
 
     /**
@@ -55,9 +78,12 @@ class BankController extends Controller
      * @param  \App\Models\Bank  $bank
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bank $bank)
+    public function edit($id)
     {
-        //
+        $where = array('id' => $id);
+        $post  = Bank::where($where)->first();
+
+        return response()->json($post);
     }
 
     /**
@@ -78,8 +104,10 @@ class BankController extends Controller
      * @param  \App\Models\Bank  $bank
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bank $bank)
+    public function destroy($id)
     {
-        //
+        $post = Bank::where('id', $id)->delete();
+
+        return response()->json($post);
     }
 }

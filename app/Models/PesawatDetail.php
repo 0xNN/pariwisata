@@ -11,4 +11,9 @@ class PesawatDetail extends Model
 
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function pesawat()
+    {
+        return $this->belongsTo(Pesawat::class);
+    }
 }

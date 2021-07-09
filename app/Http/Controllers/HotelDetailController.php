@@ -35,7 +35,20 @@ class HotelDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->hasfile('foto'))
+        {
+            foreach($request->file('foto') as $file)
+            {
+                $name = round(microtime(true)*1000).'-'.$file->getClientOriginalName();
+                $file->move(public_path('images'), $name);
+                $f = new HotelDetail();
+                $f->hotel_id = $request->hotel_id;
+                $f->foto = $name;
+                $f->save();
+            }
+
+            return response()->json($f);
+        }
     }
 
     /**
@@ -44,9 +57,15 @@ class HotelDetailController extends Controller
      * @param  \App\Models\HotelDetail  $hotelDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(HotelDetail $hotelDetail)
+    public function show($id)
     {
-        //
+        $detail = HotelDetail::where('hotel_id', $id)->get();
+        $foto = array();
+        foreach($detail as $data) 
+        {
+            array_push($foto, $data->foto);
+        }
+        return response()->json($foto);
     }
 
     /**

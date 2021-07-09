@@ -11,4 +11,14 @@ class PembayaranDetail extends Model
 
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function pembayaran()
+    {
+        return $this->belongsTo(Pembayaran::class);
+    }
+
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class);
+    }
 }

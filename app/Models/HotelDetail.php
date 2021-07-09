@@ -11,4 +11,9 @@ class HotelDetail extends Model
 
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
 }

@@ -11,4 +11,14 @@ class Hotel extends Model
 
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function hotel_detail()
+    {
+        return $this->hasMany(HotelDetail::class);
+    }
+
+    public function lokasi()
+    {
+        return $this->hasOne(Lokasi::class);
+    }
 }

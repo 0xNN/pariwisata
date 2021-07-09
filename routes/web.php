@@ -5,15 +5,20 @@ use App\Http\Controllers\BusController;
 use App\Http\Controllers\BusDetailController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelDetailController;
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\JenisBusController;
 use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PaketLokasiController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PembayaranDetailController;
 use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PesawatController;
 use App\Http\Controllers\PesawatDetailController;
+use App\Models\Paket;
+use App\Models\PaketLokasi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,9 +33,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+		$pakets = Paket::all();
+		$paket_lokasis = PaketLokasi::all();
+    return view('welcome', compact('pakets','paket_lokasis'));
 });
 
+Route::get('/info/{id}', [InfoController::class, 'index'])->name('info.index');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -62,7 +70,15 @@ Route::group(['middleware' => 'auth'], function () {
 		'pembayaran_detail' => PembayaranDetailController::class,
 		'jenis_bus' => JenisBusController::class,
 		'paket_lokasi' => PaketLokasiController::class,
-		'bank' => BankController::class
+		'bank' => BankController::class,
+		'perusahaan' => PerusahaanController::class,
+		'note' => NoteController::class
 	]);
+
+	Route::get('pemesanan/data/print/{kode}', [App\Http\Controllers\PemesananController::class, 'print'])->name('pemesanan.print');
+	Route::get('pemesanan/data/detail/{id}', [App\Http\Controllers\PemesananController::class, 'detail'])->name('pemesanan.detail');
+	Route::get('pembayaran/data/print/{kode}', [App\Http\Controllers\PembayaranController::class, 'print'])->name('pembayaran.print');
+	Route::get('pembayaran_detail/data/print/{id}', [App\Http\Controllers\PembayaranDetailController::class, 'print'])->name('pembayaran_detail.print');
+	
 });
 

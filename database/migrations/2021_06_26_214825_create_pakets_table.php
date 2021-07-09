@@ -16,7 +16,7 @@ class CreatePaketsTable extends Migration
         Schema::create('pakets', function (Blueprint $table) {
             $table->id();
             $table->string('nama_paket');
-            $table->smallInteger('hotel_id')->nullable();
+            $table->text('keterangan')->nullable();
             $table->smallInteger('bus_id')->nullable();
             $table->smallInteger('pesawat_id')->nullable();
             $table->integer('harga_paket');

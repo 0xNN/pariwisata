@@ -11,4 +11,19 @@ class Pemesanan extends Model
 
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function pembayaran()
+    {
+        return $this->hasOne(Pembayaran::class);
+    }
+
+    public function paket()
+    {
+        return $this->belongsTo(Paket::class);
+    }
 }

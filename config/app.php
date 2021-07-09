@@ -168,6 +168,7 @@ return [
         LaravelFrontendPresets\ArgonPreset\ArgonPresetServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -231,7 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-        
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+
     ],
 
 ];

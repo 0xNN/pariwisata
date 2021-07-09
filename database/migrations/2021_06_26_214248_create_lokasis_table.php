@@ -16,6 +16,8 @@ class CreateLokasisTable extends Migration
         Schema::create('lokasis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lokasi');
+            $table->text('foto');
+            $table->integer('hotel_id');
             $table->timestamps();
         });
     }

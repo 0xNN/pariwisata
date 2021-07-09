@@ -11,4 +11,9 @@ class Bank extends Model
 
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function pembayaran_detail()
+    {
+        return $this->hasMany(PembayaranDetail::class);
+    }
 }

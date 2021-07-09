@@ -11,4 +11,9 @@ class JenisBus extends Model
     
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function bus()
+    {
+        return $this->hasMany(Bus::class);
+    }
 }

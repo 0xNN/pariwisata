@@ -11,4 +11,14 @@ class PaketLokasi extends Model
 
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at'];
+
+    public function paket()
+    {
+        return $this->belongsTo(Paket::class);
+    }
+
+    public function lokasi()
+    {
+        return $this->belongsTo(Lokasi::class);
+    }
 }
