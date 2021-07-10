@@ -6,7 +6,9 @@ use App\Http\Controllers\BusDetailController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\HotelDetailController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\JenisBusController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PaketController;
@@ -72,13 +74,16 @@ Route::group(['middleware' => 'auth'], function () {
 		'paket_lokasi' => PaketLokasiController::class,
 		'bank' => BankController::class,
 		'perusahaan' => PerusahaanController::class,
-		'note' => NoteController::class
+		'note' => NoteController::class,
+		'jadwal' => JadwalController::class
 	]);
 
 	Route::get('pemesanan/data/print/{kode}', [App\Http\Controllers\PemesananController::class, 'print'])->name('pemesanan.print');
 	Route::get('pemesanan/data/detail/{id}', [App\Http\Controllers\PemesananController::class, 'detail'])->name('pemesanan.detail');
 	Route::get('pembayaran/data/print/{kode}', [App\Http\Controllers\PembayaranController::class, 'print'])->name('pembayaran.print');
 	Route::get('pembayaran_detail/data/print/{id}', [App\Http\Controllers\PembayaranDetailController::class, 'print'])->name('pembayaran_detail.print');
-	
+	Route::get('jadwal/by/paket/{id}', [JadwalController::class, 'get_jadwal_by_paket'])->name('jadwal.get_jadwal_by_paket');
+
+	Route::get('laporan/pemesanan', [LaporanController::class, 'pemesanan'])->name('laporan.pemesanan');
 });
 

@@ -11,7 +11,7 @@
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-light border-0">
-                        {{ __('Pemesanan') }}
+                        <button name="print" id="print" data-url="{{ route('laporan.pemesanan') }}" class="print btn btn-danger btn-sm"><i class="fas fa-print"></i> Cetak Laporan Pemesanan</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -90,29 +90,72 @@
             } ],
             order: [ 1, 'asc' ]
         });
-
                 
         $('body').on('click', '.setuju', function () {
-            var dataId = $(this).data('id');
-            var url = "{{ route('pemesanan.update', ":dataId") }}";
-            url = url.replace(':dataId', dataId);
+            var id = $(this).data('id');
+            let onOk = () => verify(id);
+            let notifier = new AWN();
+            notifier.confirm(
+                'Yakin ingin menyelesaikan?', 
+                onOk,
+                null,
+                {
+                    labels: {
+                        confirm: 'Konfirmasi?'
+                    }
+                }
+            );
+        });
+
+        $('#print').click(function() {
+            var url = $(this).data('url');
+            $(this).prop('disabled', true);
+            $.ajax({
+                type: 'GET',
+                url: url,
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function(response){
+                    $('#print').prop('disabled', false);
+                    const blob_file = response;
+                    const file_url = URL.createObjectURL(blob_file);
+                    window.open(file_url);
+                },
+                error: function(blob){
+                    console.log(blob);
+                }
+            });
+        });
+
+        function verify(id)
+        {
+            var id = id;
+            var url = "{{ route('pemesanan.update', ":id") }}";
+            url = url.replace(':id', id);
+            console.log(url);
             $.ajax({
                 url: url, //eksekusi ajax ke url ini
-                type: 'put',
-                beforeSend: function () {
-                    $('#setuju').text('Setuju'); //set text untuk tombol hapus
+                data: {
+                    id: id,
+                    _token:'{{ csrf_token() }}',
+                },
+                dataType: "json",
+                type: 'PUT',
+                error: function (data) {
+                    console.log(data);
                 },
                 success: function (data) { //jika sukses
                     var oTable = $('#dt-pemesanan').dataTable(); //inialisasi datatable
                     oTable.fnDraw(false); //reset datatable
-                    iziToast.success({ //tampilkan izitoast success
+                        iziToast.success({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
                         title: 'Successfully',
-                        message: 'Pemesanan Lunas',
+                        message: 'Disetujui',
                         position: 'bottomRight'
                     });
                 }
             })
-        });
+        }
     });
 </script>
 @endpush

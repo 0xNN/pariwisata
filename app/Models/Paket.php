@@ -31,4 +31,9 @@ class Paket extends Model
     {
         return $this->hasMany(Pemesanan::class);
     }
+
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class);
+    }
 }

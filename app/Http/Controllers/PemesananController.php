@@ -71,6 +71,7 @@ class PemesananController extends Controller
                                     ->where('user_id', auth()->user()->id)
                                     ->orderBy('id','desc')->first();
             $buses = Bus::all();
+            $perusahaan = Perusahaan::first();
             return view('pemesanan.user.index', compact(
                 'pakets',
                 'bus_details',
@@ -78,7 +79,8 @@ class PemesananController extends Controller
                 'harga_termasuk',
                 'harga_tidak_termasuk',
                 'pemesanan',
-                'buses'
+                'buses',
+                'perusahaan'
             ));
         }
     }
@@ -107,17 +109,21 @@ class PemesananController extends Controller
             'paket_id' => $request->paket_id,
             'pax' => $request->pax,
             'tgl_pemesanan' => date('Y-m-d'),
+            'lokasi_jemput' => $request->lokasi_jemput,
+            'no_hp' => $request->no_hp,
+            'jadwal_id' => $request->jadwal_id,
             'status' => 0,
         ]);
 
         $p = Paket::where('id', $request->paket_id)->first();
+        $total_bayar = $p->harga_paket * $post->pax;
         $pembayaran = Pembayaran::create([
             'kode_pembayaran' => 'PB'.round(microtime(true)*1000).'NN',
             'pemesanan_id' => $post->id,
+            'total_bayar' => $total_bayar,
             'status_pembayaran' => 0
         ]);
 
-        $total_bayar = $p->harga_paket * $post->pax;
         $bayar[0] = $total_bayar * 30 / 100;
         $bayar[1] = $total_bayar * 50 / 100;
         $bayar[2] = $total_bayar * 20 / 100;

@@ -3,7 +3,7 @@
     <div class="modal-content">
       <form id="form-upload" name="form-upload" enctype="multipart/form-data">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pesawat</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Pembayaran</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

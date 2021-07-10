@@ -20,7 +20,10 @@ class CreatePemesanansTable extends Migration
             $table->smallInteger('paket_id');
             $table->integer('pax')->nullable();
             $table->date('tgl_pemesanan');
-            $table->integer('status')->default(0); //0 = belum selesai, 1 = selesai
+            $table->text('lokasi_jemput');
+            $table->string('no_hp');
+            $table->integer('jadwal_id');
+            $table->integer('status')->default(0); //0 = belum selesai, 1 = selesai, 2 = batal
             $table->timestamps();
         });
     }

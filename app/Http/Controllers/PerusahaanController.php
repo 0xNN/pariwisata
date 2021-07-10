@@ -42,7 +42,10 @@ class PerusahaanController extends Controller
             'nama_perusahaan' => $request->nama_perusahaan,
             'alamat_perusahaan' => $request->alamat_perusahaan,
             'no_telpon' => $request->no_telpon,
-            'email' => $request->email
+            'email' => $request->email,
+            'bank' => $request->bank,
+            'no_rekening' => $request->no_rekening,
+            'atas_nama' => $request->atas_nama
         ]);
 
         return back()->with('success','Berhasil menyimpan data!');

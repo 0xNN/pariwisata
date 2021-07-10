@@ -11,9 +11,34 @@
       <div class="modal-body">
         <input type="hidden" name="id" id="id">
         <div class="row">
+          <p>Berikut Informasi No Rekening Perusahaan.</p>
+          <small class="text-danger">*NB: Harap catat baik-baik no rekening perusahaan dibawah ini.</small>
+          <table class="table table-sm table-bordered">
+            <tr>
+              <th>Nama Bank</th>
+              <th>{{ $perusahaan->bank }}</th>
+            </tr>
+            <tr>
+              <th>No Rekening</th>
+              <th>{{ $perusahaan->no_rekening }}</th>
+            </tr>
+            <tr>
+              <th>Atas Nama</th>
+              <th>{{ $perusahaan->atas_nama }}</th>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
               <input type="text" name="kode_pemesanan" id="kode_pemesanan" class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <select class="form-control" name="jadwal_id" id="jadwal_id" style="width: 100%"></select>
             </div>
           </div>
         </div>
@@ -43,6 +68,20 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <textarea name="lokasi_jemput" id="lokasi_jemput" class="form-control" placeholder="Alamat Lengkap Penjemputan"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <input type="text" name="no_hp" id="no_hp" class="form-control" placeholder="No HP yang bisa dihubungi. Jika lebih dari satu pisahkan dengan koma">
+            </div>
+          </div>
+        </div>
         <h3 class="font-italic text-danger">Note*</h3>
         <div class="row">
           <div class="col-sm-6">
@@ -64,7 +103,7 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-            <small class="text-danger">Pemesanan dilakukanPembayaran bisa dilakukan 3x dengan ketentuan: Pembayaran ke-1 sebesar 30%, Pembayaran ke-2 sebesar 50%, dan Pembayaran ke-3 sebesar 20%. Setelah melakukan pemesanan, selanjutnya anda akan mendapatkan kode pembayaran & kode pemesanan.</small>
+            <small class="text-danger">Pembayaran dilakukan dengan cara transfer ke No Rekening Perusahaan dan bisa dilakukan 3x dengan ketentuan: Pembayaran ke-1 sebesar 30%, Pembayaran ke-2 sebesar 50%, dan Pembayaran ke-3 sebesar 20%. Setelah melakukan pemesanan, selanjutnya anda akan mendapatkan kode pembayaran & kode pemesanan.</small>
           </div>
         </div>
       </div>
@@ -94,53 +133,5 @@
         <button type="button" name="tombol-utama-hapus" id="tombol-utama-hapus" class="btn btn-danger">Hapus</button>
       </div>
     </div>
-  </div>
-</div>
-
-<div class="modal fade" id="addUploadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <form id="form-upload" name="form-upload" enctype="multipart/form-data">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Pemesanan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <input type="hidden" name="pesawat_id" id="pesawat_id">
-              <input type="file" name="foto[]" id="foto" class="form-control" accept="image/jpeg, image/png" multiple>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-sm btn-success" id="tombol-upload-image" value="create">Upload</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Gambar Pemesanan</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body message-modal">
-          <div class="data-image">
-
-          </div>
-        </div>
-      </div>
   </div>
 </div>

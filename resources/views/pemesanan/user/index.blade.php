@@ -111,6 +111,9 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="{{ asset('argon/dist/css/izitoast.min.css') }}">
 <link rel="stylesheet" href="{{ asset('argon/css/style.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 @push('js')
@@ -119,6 +122,9 @@
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('argon') }}/dist/js/izitoast.min.js"></script>
 <script src="{{ asset('argon/js/index.var.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function () {
         $.ajaxSetup({
@@ -127,33 +133,14 @@
             }
         });
     });
+    
+    $(document).ready(function () {
+      $('#jadwal_id').select2({
+        placeholder: 'Jadwal...',
+      });
+    });
 
     $(document).ready(function() {
-        var table = $('#dt-pesawat').DataTable({
-            language: {
-                paginate: {
-                    previous: "&lt;",
-                    next: "&gt;",
-                }
-            },
-            responsive: true,
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('pesawat.index') }}",
-            columns: [
-                {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                {data: 'id', name: 'id'},
-                {data: 'nama_pesawat', name: 'nama_pesawat'},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-            ],
-            columnDefs: [ {
-                className: 'dtr-control',
-                orderable: false,
-                targets:   0
-            } ],
-            order: [ 1, 'asc' ]
-        });
-
         if ($("#form-tambah-edit").length > 0) {
             $("#form-tambah-edit").validate({
                 submitHandler: function (form) {
@@ -219,6 +206,18 @@
                   $('#pax').val(data.minimum_pack);
                   $('#pax').attr({'min': data.minimum_pack, 'max': data.maksimum_pack});
                 }
+
+                $('#jadwal_id').select2({
+                  placeholder: 'Pilih Jadwal...',
+                  ajax: {
+                    url: 'jadwal/by/paket/' + data_id,
+                    processResults: function(data) {
+                      return {
+                        results: data.results
+                      }
+                    }
+                  }
+                });
             })
         });
 

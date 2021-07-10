@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePembayaransTable extends Migration
+class CreateJadwalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePembayaransTable extends Migration
      */
     public function up()
     {
-        Schema::create('pembayarans', function (Blueprint $table) {
+        Schema::create('jadwals', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_pembayaran');
-            $table->smallInteger('pemesanan_id');
-            $table->bigInteger('total_bayar');
-            $table->integer('status_pembayaran')->default(0);// 0 = belum lunas, 1 = sudah lunas
+            $table->integer('paket_id');
+            $table->date('tgl_keberangkatan');
+            $table->time('jam_keberangkatan');
+            $table->integer('status_jadwal'); // 1 = Tersedia, 2 = Tidak Tersedia
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePembayaransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pembayarans');
+        Schema::dropIfExists('jadwals');
     }
 }

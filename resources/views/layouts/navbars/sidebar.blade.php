@@ -150,6 +150,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('jadwal.index') }}">
+                                    {{ __('Data Jadwal') }}
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('paket_lokasi.index') }}" >
                                     {{ __('Data Paket/Lokasi')}}
                                 </a>
@@ -167,6 +172,22 @@
                         </ul>
                     </div>
                 </li>
+                {{-- <li class="nav-item">
+                    <a class="nav-link active" href="#navbar-laporan" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-laporan">
+                        <i class="fas fa-clipboard" style="color: #f45f8c;"></i>
+                        <span class="nav-link-text" style="color: #f45f8c;">{{ __('Laporan') }}</span>
+                    </a>
+
+                    <div class="collapse show" id="navbar-laporan">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('laporan.pemesanan') }}">
+                                    {{ __('Laporan Pemesanan') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> --}}
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">

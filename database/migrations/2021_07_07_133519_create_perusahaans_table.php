@@ -19,6 +19,9 @@ class CreatePerusahaansTable extends Migration
             $table->text('alamat_perusahaan');
             $table->string('no_telpon');
             $table->string('email');
+            $table->string('bank');
+            $table->string('no_rekening');
+            $table->string('atas_nama');
             $table->timestamps();
         });
     }
