@@ -12,7 +12,7 @@
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-light border-0">
-                        {{ __('Pesawat') }}
+                        {{ __('Lokasi') }}
                         <a href="javascript:void(0)" class="d-sm-inline-block btn btn-sm btn-secondary shadow-sm" id="tombol-utama">
                             <i class="fas fa-plus"></i>
                         </a>
