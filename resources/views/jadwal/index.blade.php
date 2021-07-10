@@ -43,21 +43,21 @@
 @endsection
 
 @push('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="{{ asset('argon') }}/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="{{ asset('argon/dist/css/izitoast.min.css') }}">
 <link rel="stylesheet" href="{{ asset('argon/css/style.css') }}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+<link rel="stylesheet" href="{{ asset('argon') }}/css/flatpickr.min.css">
+<link rel="stylesheet" href="{{ asset('argon') }}/css/material_blue.css">
 @endpush
 
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('argon') }}/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('argon') }}/dist/js/izitoast.min.js"></script>
 <script src="{{ asset('argon/js/index.var.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/id.js"></script>
+<script src="{{ asset('argon') }}/js/flatpickr.min.js"></script>
+<script src="{{ asset('argon') }}/js/id.js"></script>
 <script>
     $(document).ready(function () {
         $.ajaxSetup({

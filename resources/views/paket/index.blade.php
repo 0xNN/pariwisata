@@ -45,7 +45,7 @@
 @endsection
 
 @push('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="{{ asset('argon') }}/css/responsive.dataTables.min.css">
 <link rel="stylesheet" href="{{ asset('argon/dist/css/izitoast.min.css') }}">
 <link rel="stylesheet" href="{{ asset('argon/css/style.css') }}">
 @endpush
@@ -53,7 +53,7 @@
 @push('js')
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('argon') }}/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('argon') }}/dist/js/izitoast.min.js"></script>
 <script src="{{ asset('argon/js/index.var.js') }}"></script>
 <script>

@@ -20,7 +20,7 @@
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="{{ asset('argon/css/dataTables.bootstrap4.min.css') }}">
         @stack('css')
     </head>
     <body class="{{ $class ?? '' }}">
@@ -60,8 +60,8 @@
         <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
         <script src="{{ asset('argon') }}/js/plugins/bootstrap-datetimepicker.min.js"></script>
         <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+        <script src="{{ asset('argon') }}/js/jquery.dataTables.min.js"></script>
+        <script src="{{ asset('argon') }}/js/dataTables.bootstrap4.min.js"></script>
         <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
         <script src="{{ asset('argon') }}/js/plugins/bootstrap-tagsinput.js"></script>
         <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -77,7 +77,7 @@
         <!-- Library for adding dinamically elements -->
         <script src="{{ asset('argon') }}/js/plugins/arrive.min.js"></script>
         <!--  Google Maps Plugin    -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE'"></script>
+        {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE'"></script> --}}
         <!-- Chartist JS -->
         <script src="{{ asset('argon') }}/js/plugins/chartist.min.js"></script>
         <!--  Notifications Plugin    -->
