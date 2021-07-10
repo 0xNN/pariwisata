@@ -201,7 +201,7 @@
                 if(data.bus_id == null)
                 {
                   $('#pax').val(0);
-                  $('#pax').attr({'min': 0, 'max': 0});
+                  $('#pax').attr({'min': 0, 'max': 100});
                 } else {
                   $('#pax').val(data.minimum_pack);
                   $('#pax').attr({'min': data.minimum_pack, 'max': data.maksimum_pack});
