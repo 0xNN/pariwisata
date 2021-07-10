@@ -67,7 +67,7 @@
                             </div>
                             <div class="form-group{{ $errors->has('bank') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="bank">{{ __('Bank') }}</label>
-                                <input type="bank" name="bank" id="bank" class="form-control form-control-alternative{{ $errors->has('bank') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank') }}" value="{{ $perusahaan->bank }}" required>
+                                <input type="bank" name="bank" id="bank" class="form-control form-control-alternative{{ $errors->has('bank') ? ' is-invalid' : '' }}" placeholder="{{ __('Bank') }}" value="{{ old('bank') }}" required>
                                 @if ($errors->has('bank'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('bank') }}</strong>
@@ -76,7 +76,7 @@
                             </div>
                             <div class="form-group{{ $errors->has('no_rekening') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="no_rekening">{{ __('No Rekening') }}</label>
-                                <input type="no_rekening" name="no_rekening" id="no_rekening" class="form-control form-control-alternative{{ $errors->has('no_rekening') ? ' is-invalid' : '' }}" placeholder="{{ __('No Rekening') }}" value="{{ $perusahaan->no_rekening }}" required>
+                                <input type="no_rekening" name="no_rekening" id="no_rekening" class="form-control form-control-alternative{{ $errors->has('no_rekening') ? ' is-invalid' : '' }}" placeholder="{{ __('No Rekening') }}" value="{{ old('no_rekening') }}" required>
                                 @if ($errors->has('no_rekening'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('no_rekening') }}</strong>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group{{ $errors->has('atas_nama') ? ' has-danger' : '' }}">
                                 <label class="form-control-label" for="atas_nama">{{ __('Atas Nama') }}</label>
-                                <input type="atas_nama" name="atas_nama" id="atas_nama" class="form-control form-control-alternative{{ $errors->has('atas_nama') ? ' is-invalid' : '' }}" placeholder="{{ __('Atas Nama') }}" value="{{ $perusahaan->atas_nama }}" required>
+                                <input type="atas_nama" name="atas_nama" id="atas_nama" class="form-control form-control-alternative{{ $errors->has('atas_nama') ? ' is-invalid' : '' }}" placeholder="{{ __('Atas Nama') }}" value="{{ old('atas_nama') }}" required>
                                 @if ($errors->has('atas_nama'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('atas_nama') }}</strong>
