@@ -13,9 +13,9 @@
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-light border-0">
                         {{ __('User Management') }}
-                        <a href="javascript:void(0)" class="d-sm-inline-block btn btn-sm btn-secondary shadow-sm" id="tombol-utama">
+                        {{-- <a href="javascript:void(0)" class="d-sm-inline-block btn btn-sm btn-secondary shadow-sm" id="tombol-utama">
                             <i class="fas fa-plus"></i>
-                        </a>
+                        </a> --}}
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
