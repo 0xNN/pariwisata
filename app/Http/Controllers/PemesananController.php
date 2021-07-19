@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Bank;
 use App\Models\Bus;
 use App\Models\BusDetail;
+use App\Models\Hotel;
+use App\Models\HotelDetail;
+use App\Models\Lokasi;
 use App\Models\Note;
 use App\Models\Paket;
 use App\Models\PaketLokasi;
@@ -12,6 +15,7 @@ use App\Models\Pembayaran;
 use App\Models\PembayaranDetail;
 use App\Models\Pemesanan;
 use App\Models\Perusahaan;
+use App\Models\PesawatDetail;
 use Illuminate\Http\Request;
 use DataTables;
 use PDF;
@@ -275,5 +279,45 @@ class PemesananController extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="'.$filename.'"'
         ]);
+    }
+
+    public function info($id)
+    {
+        $paket = Paket::whereId($id)->first();
+        $paket_lokasis = PaketLokasi::where('paket_id', $paket->id)->get();
+        $palok = array();
+        $hotel_foto = array();
+        foreach($paket_lokasis as $pl)
+        {
+            $lokasi = Lokasi::where('id', $pl->lokasi_id)->first();
+            $palok[] = $lokasi->hotel_id;
+        }
+        $unique = array_unique($palok);
+        
+        foreach($unique as $id)
+        {
+            $hotel = Hotel::whereId($id)->first();
+            $hotel_details = HotelDetail::whereHotelId($hotel->id)->get();
+            foreach($hotel_details as $hd)
+            {
+                $hotelfoto['foto'] = $hd->foto;
+                $hotelfoto['nama_hotel'] = $hd->hotel->nama_hotel;
+                array_push($hotel_foto, $hotelfoto);
+            }
+        }
+
+        // dd($hotel_foto);
+        if($paket->bus_id == null) {
+            $details = PesawatDetail::where('pesawat_id', $paket->pesawat->id)->get();
+        } else {
+            $details = BusDetail::where('bus_id', $paket->bus->id)->get();
+        }
+
+        return view('pemesanan.user.info', compact(
+            'paket',
+            'paket_lokasis',
+            'details',
+            'hotel_foto'
+        ));
     }
 }

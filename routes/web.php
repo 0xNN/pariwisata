@@ -83,6 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('pembayaran/data/print/{kode}', [App\Http\Controllers\PembayaranController::class, 'print'])->name('pembayaran.print');
 	Route::get('pembayaran_detail/data/print/{id}', [App\Http\Controllers\PembayaranDetailController::class, 'print'])->name('pembayaran_detail.print');
 	Route::get('jadwal/by/paket/{id}', [JadwalController::class, 'get_jadwal_by_paket'])->name('jadwal.get_jadwal_by_paket');
+	Route::get('pemesanan/by/paket/{id}', [PemesananController::class, 'info'])->name('pemesanan.info');
 
 	Route::get('laporan/pemesanan', [LaporanController::class, 'pemesanan'])->name('laporan.pemesanan');
 });

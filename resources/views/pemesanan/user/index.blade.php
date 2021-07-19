@@ -97,6 +97,9 @@
                       <a href="javascript:void(0)" class="d-sm-inline-block btn btn-sm btn-success shadow-sm" id="tombol-utama" data-id="{{ $item->id }}">
                         <i class="fas fa-cart-plus"></i> PESAN
                       </a>
+                      <a href="{{ route('pemesanan.info', $item->id) }}" class="d-sm-inline-block btn btn-sm btn-warning shadow-sm">
+                        <i class="fas fa-info"></i> INFO PAKET
+                    </a>
                     </div>
                 </div>
             </div>
